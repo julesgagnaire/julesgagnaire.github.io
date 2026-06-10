@@ -3,11 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <meta name="description" content="Page personnelle de Jules Gagnaire, doctorant en mathématiques à l'Université de Bordeaux (Institut de Mathématiques de Bordeaux)."/>
+  <meta property="og:title" content="Jules Gagnaire — Doctorant en Mathématiques"/>
+  <meta property="og:description" content="Page personnelle de Jules Gagnaire. Travaux en analyse complexe, analyse harmonique et théorie des frames."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jules-g7.github.io/"/>
+
   <title>Jules Gagnaire — Doctorant en Mathématiques</title>
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
+
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet"/>
+  
   <style>
     :root {
       --black: #111;
@@ -20,8 +35,8 @@
       --accent: #1a4a8a;
     }
 
-    /* Variables pour le mode sombre */
-    body.dark-mode {
+    /* Variables pour le mode sombre sur la balise html */
+    html.dark-mode {
       --black: #f0f0ee;
       --gray-dark: #ccc;
       --gray: #999;
@@ -226,6 +241,13 @@
     .entry-title { font-size: 0.9rem; font-weight: 400; margin-bottom: 0.15rem; }
     .entry-sub { font-size: 0.82rem; color: var(--gray); line-height: 1.55; }
 
+    /* SVG Icons Utils */
+    .icon {
+      vertical-align: -3px;
+      margin-right: 4px;
+      stroke-width: 2;
+    }
+
     .dl-link {
       display: inline-block;
       margin-top: 0.35rem;
@@ -389,7 +411,6 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <header>
   <a href="#accueil" class="nav-name">Jules Gagnaire</a>
   <div class="header-right">
@@ -404,12 +425,8 @@
       </ul>
     </nav>
     <div class="controls">
-      <!-- Bouton Dark Mode -->
-      <button class="btn-toggle" id="theme-toggle">🌙 Sombre</button>
-      <!-- Bouton Traduction (Custom) -->
-      <button class="btn-toggle" id="lang-toggle">🇬🇧 English</button>
-      
-      <!-- L'élément Google Translate est masqué via CSS -->
+      <button class="btn-toggle" id="theme-toggle" aria-label="Basculer le mode sombre">🌙 Sombre</button>
+      <button class="btn-toggle" id="lang-toggle" aria-label="Traduire le site">🇬🇧 English</button>
       <div id="google_translate_element"></div>
     </div>
   </div>
@@ -417,7 +434,6 @@
 
 <main>
 
-  <!-- PRÉSENTATION -->
   <section id="accueil">
     <div class="section-label">Présentation</div>
     <h1 class="hero-title">Jules Gagnaire<br><em>Doctorant en mathématiques</em></h1>
@@ -442,7 +458,6 @@
     </div>
   </section>
 
-  <!-- RECHERCHE -->
   <section id="recherche">
     <div class="section-label">Recherche</div>
     <h2>Intérêts &amp; travaux</h2>
@@ -457,8 +472,8 @@
     <div class="theme">
       <h3>Espace de Paley-Wiener</h3>
       <p>L'espace de Paley-Wiener \(PW_\tau\) est l'espace des fonctions entières de type
-      exponentiel au plus \(2\pi\tau\) (ou \(\tau\) tout dépend de la convention de la transformée de Fourier), de carré intégrable sur la droite réelle. Les fonctions de cet espace sont caractérisées par le théorème de Paley-Wiener. Je m'intéresse aux mesures de sampling sur cet espace. Une mesure \(\mu\) est dite de sampling s'il existe des constantes \(A,B>0\) telles qu'on ait l'inégalité suivante:
-      $$A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad f \in PW_\tau.$$</p>
+      exponentiel au plus \(2\pi\tau\) (ou \(\tau\) tout dépend de la convention de la transformée de Fourier), de carré intégrable sur la droite réelle. Les fonctions de cet espace sont caractérisées par le théorème de Paley-Wiener. Je m'intéresse aux mesures de sampling sur cet espace. Une mesure \(\mu\) est dite de sampling s'il existe des constantes \(A,B>0\) telles qu'on ait l'inégalité suivante :
+      \[ A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad f \in PW_\tau. \]</p>
     </div>
 
     <div style="margin-top:2.5rem;">
@@ -467,7 +482,6 @@
     </div>
   </section>
 
-  <!-- ENSEIGNEMENT -->
   <section id="enseignement">
     <div class="section-label">Enseignement</div>
     <h2>Cours &amp; travaux dirigés</h2>
@@ -484,7 +498,11 @@
         <tr>
           <td>Mes Développements à l'Agrégation</td>
           <td class="mono">M2</td>
-          <td><a href="https://github.com/jules-g7/memoire/raw/main/Mes_Developpement_à_l_agregation.pdf" class="dl-link" target="_blank">↓ PDF.</a></td>
+          <td>
+            <a href="https://github.com/jules-g7/memoire/raw/main/Mes_Developpement_à_l_agregation.pdf" class="dl-link" target="_blank">
+              <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> PDF.
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -509,24 +527,24 @@
     </table>
   </section>
 
-  <!-- EXPOSÉS & DIFFUSION -->
   <section id="exposes">
     <div class="section-label">Exposés &amp; diffusion scientifique</div>
     <h2>Séminaires &amp; conférences</h2>
     <div class="talk">
-  <div class="talk-date">2025</div>
-  <div>
-    <div class="talk-title">
-      Théorie des frames de Gabor : Résultats classiques et défis sur des réseaux quelconques
-      <span class="badge">Présentation</span>
+      <div class="talk-date">2025</div>
+      <div>
+        <div class="talk-title">
+          Théorie des frames de Gabor : Résultats classiques et défis sur des réseaux quelconques
+          <span class="badge">Présentation</span>
+        </div>
+        <div class="talk-where">
+          MARGAUX PhD Days — Institut de Mathématiques de Bordeaux<br>
+          <a href="https://github.com/jules-g7/memoire/raw/main/Beamer___Théorie_des_frames_de_Gabor___Résultats_classiques_et_défis_sur_des_réseaux_quelconques__MARGAUx_PhD_Days_-1.pdf" target="_blank" class="dl-link">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="talk-where">
-      MARGAUX PhD Days — Institut de Mathématiques de Bordeaux<br>
-      <a href="https://github.com/jules-g7/memoire/raw/main/Beamer___Théorie_des_frames_de_Gabor___Résultats_classiques_et_défis_sur_des_réseaux_quelconques__MARGAUx_PhD_Days_-1.pdf" 
-         target="_blank" class="dl-link">↓ Télécharger les slides (PDF)</a>
-    </div>
-  </div>
-</div>
 
     <h2 style="margin-top:3rem;">Engagement &amp; vulgarisation</h2>
     <div class="talk">
@@ -538,7 +556,6 @@
     </div>
   </section>
 
-  <!-- CV -->
   <section id="cv">
     <div class="section-label">Curriculum vitæ</div>
     <h2>Parcours</h2>
@@ -616,7 +633,9 @@
             Mémoire de M2 — Université de Bordeaux, dirigé par Karim Kellay.<br>
             Espaces de Hardy, théorème de factorisation, théorème de Müntz-Szász, opérateur du shift, sous-espaces invariants, théorème de Beurling, opérateurs de composition, mesures de Carleson.
           </div>
-          <a href="https://github.com/jules-g7/memoire/raw/main/Mémoire_M2___Les_espaces_de_Hardy_et_leurs_applications__version_allégée_.pdf" class="dl-link" target="_blank">↓ Télécharger le mémoire (PDF)</a>
+          <a href="https://github.com/jules-g7/memoire/raw/main/Mémoire_M2___Les_espaces_de_Hardy_et_leurs_applications__version_allégée_.pdf" class="dl-link" target="_blank">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger le mémoire (PDF)
+          </a>
         </div>
       </div>
 
@@ -628,7 +647,9 @@
             Mémoire de M1 — Université de Franche-Comté, dirigé par Yulia Kuznetsova.<br>
             Principe du maximum sur des ouverts non bornés, théorème de Boas-Bernstein, interpolation de Riesz-Thorin, inégalités de Hausdorff-Young, équation de la chaleur.
           </div>
-          <a href="https://github.com/jules-g7/memoire/raw/main/Projet_M1___Théorème_de_Phragmen_Lindelof_et_applictaions.pdf" class="dl-link" target="_blank">↓ Télécharger le mémoire (PDF)</a>
+          <a href="https://github.com/jules-g7/memoire/raw/main/Projet_M1___Théorème_de_Phragmen_Lindelof_et_applictaions.pdf" class="dl-link" target="_blank">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger le mémoire (PDF)
+          </a>
         </div>
       </div>
 
@@ -640,7 +661,9 @@
             Mémoire de L3 — Université de Franche-Comté, dirigé par Martin Meyer.<br>
             Fonctions Gamma et Beta, lien avec la fonction Zêta de Riemann.
           </div>
-          <a href="https://github.com/jules-g7/memoire/raw/main/Mémoire_L3_corrigé.pdf" class="dl-link" target="_blank">↓ Télécharger le mémoire (PDF)</a>
+          <a href="https://github.com/jules-g7/memoire/raw/main/Mémoire_L3_corrigé.pdf" class="dl-link" target="_blank">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger le mémoire (PDF)
+          </a>
         </div>
       </div>
     </div>
@@ -695,10 +718,11 @@
       </div>
     </div>
 
-    <a href="https://github.com/jules-g7/memoire/raw/main/CV_site.pdf" class="link-small" target="_blank">↓ Télécharger le CV complet (PDF)</a>
+    <a href="https://github.com/jules-g7/memoire/raw/main/CV_site.pdf" class="link-small" target="_blank">
+      <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger le CV complet (PDF)
+    </a>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="section-label">Contact</div>
     <h2>Me contacter</h2>
@@ -706,13 +730,17 @@
     <div class="contact-grid">
       <div>
         <div class="contact-item">
-          <div class="contact-label">Adresse email</div>
+          <div class="contact-label">
+            <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Adresse email
+          </div>
           <div class="contact-value">
             <a href="mailto:jules.gagnaire@math.u-bordeaux.fr">jules.gagnaire@math.u-bordeaux.fr</a>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-label">Bureau</div>
+          <div class="contact-label">
+            <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Bureau
+          </div>
           <div class="contact-value">
             Bâtiment A33, bureau 381<br>
             Institut de Mathématiques de Bordeaux
@@ -721,7 +749,9 @@
       </div>
       <div>
         <div class="contact-item">
-          <div class="contact-label">Adresse postale</div>
+          <div class="contact-label">
+            <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Adresse postale
+          </div>
           <div class="contact-value">
             Institut de Mathématiques de Bordeaux<br>
             351 cours de la Libération<br>
@@ -729,7 +759,9 @@
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-label">Page institutionnelle</div>
+          <div class="contact-label">
+            <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Page institutionnelle
+          </div>
           <div class="contact-value">
             <a href="https://www.math.u-bordeaux.fr/fr/fiche-personnelle-jgagnaire" target="_blank">math.u-bordeaux.fr</a>
           </div>
@@ -744,7 +776,6 @@
   Jules Gagnaire — Doctorant en mathématiques, Université de Bordeaux
 </footer>
 
-<!-- SCRIPT POUR GOOGLE TRANSLATE (Initialisation invisible) -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -756,7 +787,6 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- SCRIPT EXISTANT + LOGIQUE DARK MODE + BOUTON CUSTOM TRADUCTION -->
 <script>
   // ==========================================
   // Logique du scroll de la navbar
@@ -780,18 +810,17 @@
   // Logique du Dark Mode
   // ==========================================
   const themeToggleBtn = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme');
-
-  if (currentTheme === 'dark') {
-    document.body.classList.add('dark-mode');
+  
+  // Initialisation du texte du bouton selon l'état appliqué dans le <head>
+  if (document.documentElement.classList.contains('dark-mode')) {
     themeToggleBtn.textContent = '☀️ Clair';
   }
 
   themeToggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    document.documentElement.classList.toggle('dark-mode');
     
     let theme = 'light';
-    if (document.body.classList.contains('dark-mode')) {
+    if (document.documentElement.classList.contains('dark-mode')) {
       theme = 'dark';
       themeToggleBtn.textContent = '☀️ Clair';
     } else {
