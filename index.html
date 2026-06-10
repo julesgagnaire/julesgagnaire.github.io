@@ -118,18 +118,14 @@
       background: var(--border);
     }
 
-    /* Styles pour masquer le bandeau Google Translate par défaut */
-    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    /* Masquer tous les éléments parasites de Google Translate */
+    .goog-te-banner-frame { display: none !important; }
     body { top: 0px !important; }
-    #google_translate_element select {
-      background: var(--bg);
-      color: var(--black);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.2rem;
-      font-size: 0.75rem;
-      font-family: 'IBM Plex Mono', monospace;
-    }
+    .skiptranslate > iframe { display: none !important; }
+    #google_translate_element { display: none !important; }
+    .goog-tooltip { display: none !important; }
+    .goog-tooltip:hover { display: none !important; }
+    .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
 
     /* ── MAIN ── */
     main {
@@ -410,7 +406,10 @@
     <div class="controls">
       <!-- Bouton Dark Mode -->
       <button class="btn-toggle" id="theme-toggle">🌙 Sombre</button>
-      <!-- Widget Google Translate -->
+      <!-- Bouton Traduction (Custom) -->
+      <button class="btn-toggle" id="lang-toggle">🇬🇧 English</button>
+      
+      <!-- L'élément Google Translate est masqué via CSS -->
       <div id="google_translate_element"></div>
     </div>
   </div>
@@ -745,21 +744,23 @@
   Jules Gagnaire — Doctorant en mathématiques, Université de Bordeaux
 </footer>
 
-<!-- SCRIPT POUR GOOGLE TRANSLATE -->
+<!-- SCRIPT POUR GOOGLE TRANSLATE (Initialisation invisible) -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'fr',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      includedLanguages: 'en',
       autoDisplay: false
     }, 'google_translate_element');
   }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- SCRIPT EXISTANT + LOGIQUE DARK MODE -->
+<!-- SCRIPT EXISTANT + LOGIQUE DARK MODE + BOUTON CUSTOM TRADUCTION -->
 <script>
+  // ==========================================
   // Logique du scroll de la navbar
+  // ==========================================
   const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav a');
 
@@ -775,7 +776,9 @@
 
   sections.forEach(s => obs.observe(s));
 
+  // ==========================================
   // Logique du Dark Mode
+  // ==========================================
   const themeToggleBtn = document.getElementById('theme-toggle');
   const currentTheme = localStorage.getItem('theme');
 
@@ -796,6 +799,40 @@
     }
     
     localStorage.setItem('theme', theme);
+  });
+
+  // ==========================================
+  // Logique du bouton Traduction Custom FR/EN
+  // ==========================================
+  const langToggleBtn = document.getElementById('lang-toggle');
+
+  // Fonction pour lire le cookie de traduction
+  function getTranslateCookie() {
+    const match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]*)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  // Changer l'affichage du bouton selon l'état actuel
+  const activeLang = getTranslateCookie();
+  if (activeLang === '/fr/en') {
+    langToggleBtn.textContent = '🇫🇷 Français';
+  } else {
+    langToggleBtn.textContent = '🇬🇧 English';
+  }
+
+  // Événement au clic
+  langToggleBtn.addEventListener('click', () => {
+    if (getTranslateCookie() === '/fr/en') {
+      // Revenir en français en supprimant le cookie Google Translate
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${location.hostname}; path=/;`;
+    } else {
+      // Forcer la traduction en anglais
+      document.cookie = `googtrans=/fr/en; path=/`;
+      document.cookie = `googtrans=/fr/en; domain=${location.hostname}; path=/`;
+    }
+    // Recharger la page pour appliquer la modification
+    location.reload();
   });
 </script>
 
