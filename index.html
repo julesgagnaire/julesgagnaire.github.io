@@ -35,7 +35,6 @@
       --accent: #1a4a8a;
     }
 
-    /* Variables pour le mode sombre sur la balise html */
     html.dark-mode {
       --black: #f0f0ee;
       --gray-dark: #ccc;
@@ -48,7 +47,9 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    
+    /* Ajout du décalage pour ne pas masquer les titres sous la barre fixe */
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
       background: var(--bg);
@@ -111,7 +112,15 @@
     nav ul a:hover { color: var(--black); background: var(--border); }
     nav ul a.active { color: var(--black); font-weight: 500; }
 
-    /* Boutons de contrôle (Dark Mode & Traduction) */
+    .burger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--black);
+      padding: 0.5rem;
+    }
+
     .controls {
       display: flex;
       align-items: center;
@@ -133,7 +142,6 @@
       background: var(--border);
     }
 
-    /* Masquer tous les éléments parasites de Google Translate */
     .goog-te-banner-frame { display: none !important; }
     body { top: 0px !important; }
     .skiptranslate > iframe { display: none !important; }
@@ -241,7 +249,6 @@
     .entry-title { font-size: 0.9rem; font-weight: 400; margin-bottom: 0.15rem; }
     .entry-sub { font-size: 0.82rem; color: var(--gray); line-height: 1.55; }
 
-    /* SVG Icons Utils */
     .icon {
       vertical-align: -3px;
       margin-right: 4px;
@@ -269,6 +276,46 @@
       transition: border-color 0.15s;
     }
     .link-small:hover { border-color: var(--accent); }
+
+    /* ── ACCORDEONS (Abstracts) ── */
+    details.abstract-accordion {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--gray-dark);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    details.abstract-accordion summary {
+      cursor: pointer;
+      padding: 0.5rem 0.8rem;
+      font-weight: 500;
+      color: var(--black);
+      list-style: none; /* Supprime la flèche par défaut */
+      user-select: none;
+      transition: background 0.2s;
+    }
+    details.abstract-accordion summary:hover {
+      background: var(--border);
+    }
+    details.abstract-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+    details.abstract-accordion summary::before {
+      content: '▸';
+      display: inline-block;
+      margin-right: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    details.abstract-accordion[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .abstract-content {
+      padding: 0.8rem;
+      border-top: 1px dashed var(--border);
+      line-height: 1.6;
+    }
 
     /* ── RESEARCH ── */
     .theme {
@@ -393,17 +440,41 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE & MENU BURGER ── */
     @media (max-width: 900px) {
-      .header-right { flex-direction: column; gap: 0.5rem; align-items: flex-end; }
-      header { height: auto; padding: 1rem; }
-      main { padding-top: 7rem; }
+      header { padding: 0 1.5rem; }
+      .burger-btn { display: block; }
+      .header-right {
+        display: none; /* Caché par défaut */
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem;
+        gap: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      }
+      .header-right.open {
+        display: flex; /* Affiché quand la classe open est active */
+      }
+      nav { width: 100%; }
+      nav ul { flex-direction: column; align-items: flex-start; gap: 0; }
+      nav ul li { width: 100%; }
+      nav ul a {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--border);
+        border-radius: 0;
+        font-size: 0.9rem;
+      }
+      nav ul li:last-child a { border-bottom: none; }
+      .controls { width: 100%; justify-content: flex-start; }
     }
     @media (max-width: 700px) {
-      header { padding: 1rem 1.2rem; }
-      nav ul { flex-wrap: wrap; justify-content: flex-end; gap: 0; }
-      nav ul a { padding: 0.35rem 0.4rem; font-size: 0.72rem; }
-      main { padding: 8.5rem 1.2rem 3rem; }
+      main { padding: 6.5rem 1.2rem 3rem; }
       .entry, .talk { grid-template-columns: 90px 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
@@ -413,7 +484,10 @@
 
 <header>
   <a href="#accueil" class="nav-name">Jules Gagnaire</a>
-  <div class="header-right">
+  <button class="burger-btn" id="burger-btn" aria-label="Menu principal">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </button>
+  <div class="header-right" id="header-right">
     <nav>
       <ul>
         <li><a href="#accueil">Présentation</a></li>
@@ -478,6 +552,12 @@
 
     <div style="margin-top:2.5rem;">
       <h2>Publications &amp; prépublications</h2>
+      <details class="abstract-accordion" style="margin-bottom: 1rem;">
+        <summary>Titre de l'article à venir (202X)</summary>
+        <div class="abstract-content">
+          <strong>Abstract :</strong> Ceci est un exemple de résumé intégré via un accordéon natif. Il permet de garder la liste des publications claire et lisible, tout en offrant les détails nécessaires à la demande.
+        </div>
+      </details>
       <span class="placeholder">À compléter à l'avenir.</span>
     </div>
   </section>
@@ -543,6 +623,12 @@
             <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
           </a>
         </div>
+        <details class="abstract-accordion">
+          <summary>Résumé de l'exposé</summary>
+          <div class="abstract-content">
+            L'analyse de Fourier est l'outil naturel d'étude des fréquences d'un signal mais ne donne aucune information sur le moment de l'émission. L'analyse de Gabor (ou temps-fréquence) vise à pallier ce problème en se restreignant à une fenêtre en temps. Cet exposé aborde les résultats fondamentaux qui garantissent qu'un système de Gabor régulier forme une base de Riesz, avant de présenter les difficultés et limites rencontrées sur des réseaux irréguliers.
+          </div>
+        </details>
       </div>
     </div>
 
@@ -789,6 +875,23 @@
 
 <script>
   // ==========================================
+  // Logique du Menu Burger (Mobile)
+  // ==========================================
+  const burgerBtn = document.getElementById('burger-btn');
+  const headerRight = document.getElementById('header-right');
+
+  burgerBtn.addEventListener('click', () => {
+    headerRight.classList.toggle('open');
+  });
+
+  // Fermer le menu lors d'un clic sur un lien
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      headerRight.classList.remove('open');
+    });
+  });
+
+  // ==========================================
   // Logique du scroll de la navbar
   // ==========================================
   const sections = document.querySelectorAll('section[id]');
@@ -811,7 +914,6 @@
   // ==========================================
   const themeToggleBtn = document.getElementById('theme-toggle');
   
-  // Initialisation du texte du bouton selon l'état appliqué dans le <head>
   if (document.documentElement.classList.contains('dark-mode')) {
     themeToggleBtn.textContent = '☀️ Clair';
   }
@@ -835,13 +937,11 @@
   // ==========================================
   const langToggleBtn = document.getElementById('lang-toggle');
 
-  // Fonction pour lire le cookie de traduction
   function getTranslateCookie() {
     const match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]*)/);
     return match ? decodeURIComponent(match[1]) : null;
   }
 
-  // Changer l'affichage du bouton selon l'état actuel
   const activeLang = getTranslateCookie();
   if (activeLang === '/fr/en') {
     langToggleBtn.textContent = '🇫🇷 Français';
@@ -849,18 +949,14 @@
     langToggleBtn.textContent = '🇬🇧 English';
   }
 
-  // Événement au clic
   langToggleBtn.addEventListener('click', () => {
     if (getTranslateCookie() === '/fr/en') {
-      // Revenir en français en supprimant le cookie Google Translate
       document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${location.hostname}; path=/;`;
     } else {
-      // Forcer la traduction en anglais
       document.cookie = `googtrans=/fr/en; path=/`;
       document.cookie = `googtrans=/fr/en; domain=${location.hostname}; path=/`;
     }
-    // Recharger la page pour appliquer la modification
     location.reload();
   });
 </script>
