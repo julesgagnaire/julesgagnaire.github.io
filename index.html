@@ -331,6 +331,71 @@
       margin-bottom: 0.5rem;
     }
 
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    .pub-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .pub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .pub-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.4;
+    }
+    .pub-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 0.8rem;
+    }
+    .pub-journal {
+      font-style: italic;
+    }
+    .pub-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+    .pub-links a {
+      color: var(--gray);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      gap: 0.3rem;
+      transition: color 0.15s;
+    }
+    .pub-links a:hover {
+      color: var(--accent);
+    }
+    
+    /* Adaptation mobile pour les articles */
+    @media (max-width: 600px) {
+      .pub-header, .pub-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      .pub-meta { margin-bottom: 1rem; gap: 0.8rem; }
+      .pub-header .dl-link { margin-top: 0; }
+    }
+
     /* ── TABLE ── */
     .teach-table {
       width: 100%;
@@ -552,13 +617,35 @@
 
     <div style="margin-top:2.5rem;">
       <h2>Publications &amp; prépublications</h2>
-      <details class="abstract-accordion" style="margin-bottom: 1rem;">
-        <summary>TBA</summary>
-        <div class="abstract-content">
-          <strong>Abstract :</strong> TBA
+      
+      <!-- Article 1 (Exemple Publié) -->
+      <div class="pub-item">
+        <div class="pub-header">
+          <div class="pub-title">TBA</div>
+          <a href="lien_vers_le_pdf.pdf" class="dl-link" target="_blank">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> --
+          </a>
         </div>
-      </details>
-    </div>
+        <div class="pub-meta">
+          <div class="pub-journal">---, 2026</div>
+          <div class="pub-links">
+            <!-- Lien arXiv -->
+            <a href="lien_arxiv" target="_blank">
+              <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M9 18l3-3-3-3"></path></svg> arXiv
+            </a>
+            <!-- Lien DOI -->
+            <a href="lien_doi" target="_blank">
+              <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> DOI
+            </a>
+          </div>
+        </div>
+        <details class="abstract-accordion">
+          <summary>Abstract</summary>
+          <div class="abstract-content">
+            TBA
+          </div>
+        </details>
+      </div>
   </section>
 
   <section id="enseignement">
