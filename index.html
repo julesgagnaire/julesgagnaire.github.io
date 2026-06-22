@@ -602,18 +602,36 @@
     <h2>Intérêts &amp; travaux</h2>
 
     <div class="theme">
-      <h3>Frames de Gabor </h3>
-      <p>Les frames de Gabor sont des familles de fonctions obtenues par translations et
-      modulations d'une fenêtre fixée. Elles jouent un rôle fondamental en analyse
-      temps-fréquence. Je m'intéresse aux sytèmes de Gabor irréguliers et lorsqu'ils forment une frame.</p>
-    </div>
+  <h3>L'espace de Paley-Wiener</h3>
+  <p>
+    En mathématiques et en théorie de l'information, l'espace de Paley-Wiener, noté $PW_\tau$, est le pont idéal entre l'analyse complexe et le traitement du signal. Intuitivement, il s'agit de l'espace des signaux dits « à bande limitée » (band-limited). Cela signifie que si l'on regarde ces signaux dans le domaine des fréquences (via la transformée de Fourier), ils ne contiennent aucune fréquence au-delà d'un certain seuil $\tau$. C'est le cas de la plupart des signaux physiques réels, comme la musique ou les ondes radio.
+  </p>
+  <p>
+    <strong>Résultats classiques :</strong>
+    <ul>
+      <li><strong>Le théorème de Paley-Wiener :</strong> Il caractérise ces signaux de manière remarquable. Il affirme qu'une fonction de carré intégrable appartient à $PW_\tau$ si et seulement si elle peut être prolongée sur le plan complexe en une fonction entière de type exponentiel. Ce résultat relie ainsi l'analyse harmonique réelle à l'analyse complexe.</li>
+      <li><strong>Le théorème d'échantillonnage de Shannon-Nyquist :</strong> C'est le pilier de l'ère numérique. Il garantit que tout signal de $PW_\tau$ peut être parfaitement reconstruit à partir d'une suite de points discrets (des échantillons), à condition que ces points soient espacés de manière régulière et suffisamment rapprochés.</li>
+      <li><strong>L'échantillonnage irrégulier (Beurling / Landau) :</strong> Lorsque les points d'échantillonnage ne sont plus réguliers, des résultats profonds stipulent que la reconstruction parfaite reste possible si et seulement si la « densité » géométrique de ces points dépasse un certain seuil critique lié à $\tau$.</li>
+    </ul>
+  </p>
+</div>
 
-    <div class="theme">
-      <h3>Espace de Paley-Wiener</h3>
-      <p>L'espace de Paley-Wiener \(PW_\tau\) est l'espace des fonctions entières de type
-      exponentiel au plus \(2\pi\tau\) (ou \(\tau\) tout dépend de la convention de la transformée de Fourier), de carré intégrable sur la droite réelle. Les fonctions de cet espace sont caractérisées par le théorème de Paley-Wiener. Je m'intéresse aux mesures de sampling sur cet espace. Une mesure \(\mu\) est dite de sampling s'il existe des constantes \(A,B>0\) telles qu'on ait l'inégalité suivante :
-      \[ A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad f \in PW_\tau. \]</p>
-    </div>
+<div class="theme">
+  <h3>Les frames de Gabor et l'analyse temps-fréquence</h3>
+  <p>
+    Les frames de Gabor sont l'outil mathématique par excellence pour l'analyse temps-fréquence. La transformée de Fourier classique permet de connaître les fréquences présentes dans un signal, mais ne dit pas <em>quand</em> elles apparaissent (comme lire les notes d'une partition sans savoir dans quel ordre les jouer). Pour pallier cela, la méthode de Gabor consiste à prendre une fonction « fenêtre » très concentrée (comme une courbe en cloche), et à la décaler dans le temps (translation) et dans les fréquences (modulation). 
+  </p>
+  <p>
+    On obtient ainsi un vaste dictionnaire de fonctions. Lorsque ce dictionnaire permet de décomposer et de reconstruire de manière stable n'importe quel signal de $L^2(\mathbb{R})$ (avec un contrôle de l'énergie encadré par des constantes $A$ et $B$), on dit qu'il forme une <strong>frame</strong>. Contrairement à une base orthonormée classique, une frame est redondante : cette surabondance d'information est volontaire, car elle offre une grande robustesse face au bruit.
+  </p>
+  <p>
+    <strong>Résultats classiques :</strong>
+    <ul>
+      <li><strong>Le théorème de Balian-Low :</strong> Ce théorème célèbre explique pourquoi les frames (et la redondance) sont indispensables. Il stipule qu'il est mathématiquement impossible de construire une base orthonormée de Gabor avec une fenêtre qui soit parfaitement localisée à la fois en temps et en fréquence. Pour avoir une « bonne » fenêtre, il faut accepter la redondance d'une frame.</li>
+      <li><strong>La barrière de densité :</strong> Tout comme pour les espaces de Paley-Wiener, il existe une limite géométrique. Pour qu'une grille de points temps-fréquence génère une frame, sa densité doit impérativement être supérieure ou égale à $1$. En deçà, la perte d'information est irréversible, quelle que soit la fenêtre utilisée.</li>
+    </ul>
+  </p>
+</div>
 
     <div style="margin-top:2.5rem;">
       <h2>Publications &amp; prépublications</h2>
