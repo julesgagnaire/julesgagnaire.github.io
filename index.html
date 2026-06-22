@@ -601,37 +601,42 @@
     <div class="section-label">Recherche</div>
     <h2>Intérêts &amp; travaux</h2>
 
-    <div class="theme">
-  <h3>L'espace de Paley-Wiener</h3>
-  <p>
-    En mathématiques et en théorie de l'information, l'espace de Paley-Wiener, noté $PW_\tau$, est le pont idéal entre l'analyse complexe et le traitement du signal. Intuitivement, il s'agit de l'espace des signaux dits « à bande limitée » (band-limited). Cela signifie que si l'on regarde ces signaux dans le domaine des fréquences (via la transformée de Fourier), ils ne contiennent aucune fréquence au-delà d'un certain seuil $\tau$. C'est le cas de la plupart des signaux physiques réels, comme la musique ou les ondes radio.
-  </p>
-  <p>
-    <strong>Résultats classiques :</strong>
-    <ul>
-      <li><strong>Le théorème de Paley-Wiener :</strong> Il caractérise ces signaux de manière remarquable. Il affirme qu'une fonction de carré intégrable appartient à $PW_\tau$ si et seulement si elle peut être prolongée sur le plan complexe en une fonction entière de type exponentiel. Ce résultat relie ainsi l'analyse harmonique réelle à l'analyse complexe.</li>
-      <li><strong>Le théorème d'échantillonnage de Shannon-Nyquist :</strong> C'est le pilier de l'ère numérique. Il garantit que tout signal de $PW_\tau$ peut être parfaitement reconstruit à partir d'une suite de points discrets (des échantillons), à condition que ces points soient espacés de manière régulière et suffisamment rapprochés.</li>
-      <li><strong>L'échantillonnage irrégulier (Beurling / Landau) :</strong> Lorsque les points d'échantillonnage ne sont plus réguliers, des résultats profonds stipulent que la reconstruction parfaite reste possible si et seulement si la « densité » géométrique de ces points dépasse un certain seuil critique lié à $\tau$.</li>
-    </ul>
-  </p>
-</div>
+    <section id="recherche">
+    <div class="section-label">Recherche</div>
+    <h2>Intérêts &amp; travaux</h2>
 
-<div class="theme">
-  <h3>Les frames de Gabor et l'analyse temps-fréquence</h3>
-  <p>
-    Les frames de Gabor sont l'outil mathématique par excellence pour l'analyse temps-fréquence. La transformée de Fourier classique permet de connaître les fréquences présentes dans un signal, mais ne dit pas <em>quand</em> elles apparaissent (comme lire les notes d'une partition sans savoir dans quel ordre les jouer). Pour pallier cela, la méthode de Gabor consiste à prendre une fonction « fenêtre » très concentrée (comme une courbe en cloche), et à la décaler dans le temps (translation) et dans les fréquences (modulation). 
-  </p>
-  <p>
-    On obtient ainsi un vaste dictionnaire de fonctions. Lorsque ce dictionnaire permet de décomposer et de reconstruire de manière stable n'importe quel signal de $L^2(\mathbb{R})$ (avec un contrôle de l'énergie encadré par des constantes $A$ et $B$), on dit qu'il forme une <strong>frame</strong>. Contrairement à une base orthonormée classique, une frame est redondante : cette surabondance d'information est volontaire, car elle offre une grande robustesse face au bruit.
-  </p>
-  <p>
-    <strong>Résultats classiques :</strong>
-    <ul>
-      <li><strong>Le théorème de Balian-Low :</strong> Ce théorème célèbre explique pourquoi les frames (et la redondance) sont indispensables. Il stipule qu'il est mathématiquement impossible de construire une base orthonormée de Gabor avec une fenêtre qui soit parfaitement localisée à la fois en temps et en fréquence. Pour avoir une « bonne » fenêtre, il faut accepter la redondance d'une frame.</li>
-      <li><strong>La barrière de densité :</strong> Tout comme pour les espaces de Paley-Wiener, il existe une limite géométrique. Pour qu'une grille de points temps-fréquence génère une frame, sa densité doit impérativement être supérieure ou égale à $1$. En deçà, la perte d'information est irréversible, quelle que soit la fenêtre utilisée.</li>
-    </ul>
-  </p>
-</div>
+    <section id="recherche">
+    <div class="section-label">Recherche</div>
+    <h2>Intérêts &amp; travaux</h2>
+
+    <div class="theme">
+      <h3>Espace de Paley-Wiener</h3>
+      <p>L'espace de Paley-Wiener $PW_\tau$ est l'espace des fonctions entières de type exponentiel au plus $\tau$ (ou $2\pi\tau$, selon la convention de la transformée de Fourier) dont la restriction à la droite réelle est de carré intégrable. Cet espace apparaît naturellement dans de nombreux cadres mathématiques et physiques, notamment via le théorème d'échantillonnage de Shannon-Nyquist, qui stipule que toute fonction de cet espace peut être parfaitement reconstruite à partir de ses évaluations sur un réseau régulier abstrait.</p>
+      
+      <p>Historiquement, l'étude de l'échantillonnage dans $PW_\tau$ s'est concentrée sur les ensembles discrets (sampling sets). Les travaux fondateurs de Beurling et Landau ont établi les conditions géométriques de densité nécessaires et suffisantes pour qu'un ensemble irrégulier $\Lambda \subset \mathbb{R}$ garantisse la stabilité de la reconstruction, traduite par l'équivalence de normes :
+      $$A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Lambda} |f(\lambda)|^2 \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.$$</p>
+
+      <p>De manière plus générale, cette notion s'étend aux mesures de sampling. Une mesure positive $\mu$ est dite de sampling pour $PW_\tau$ s'il existe des constantes $A, B > 0$ telles que :
+      $$A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.$$</p>
+    </div>
+
+    <div class="theme">
+      <h3>Frames de Gabor </h3>
+      <p>Un système de Gabor est une famille de fonctions de la forme :
+      $$\mathcal{G}(g, \Delta) = \{e^{2\pi i \lambda_2 x} g(x - \lambda_1)\}_{(\lambda_1, \lambda_2) \in \Delta}$$
+      où $g \in L^2(\mathbb{R})$ est appelée la fenêtre, qui en général est une fonction bien localisée (par exemple, une Gaussienne ou une sécante hyperbolique), et $\Delta \subset \mathbb{R}^2$ est un ensemble discret de points. On dit que ce système forme une frame de Gabor pour $L^2(\mathbb{R})$ s'il existe des constantes $A, B > 0$ telles que pour toute fonction $f \in L^2(\mathbb{R})$ :
+      $$A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Delta} |\langle f, \pi_\lambda g \rangle|^2 \le B \|f\|_{L^2}^2.$$</p>
+      
+      <p>Les frames de Gabor sont rigoureusement documentées et s'appuient sur plusieurs piliers théoriques classiques. Pour des réseaux réguliers de la forme $\Delta = a\mathbb{Z} \times b\mathbb{Z}$, la propriété de frame est parfaitement caractérisée. Outre le critère historique d'Ingrid Daubechies (1990) établissant des conditions suffisantes via le contrôle des termes croisés, la structure fine de ces opérateurs repose sur le théorème de dualité de Wexler-Raz / Ron-Shen, qui relie l'opérateur de frame sur $\Delta$ à une propriété de séquence de Riesz sur le réseau adjoint $\Delta^\circ = \frac{1}{b}\mathbb{Z} \times \frac{1}{a}\mathbb{Z}$. De plus, le théorème de Janssen permet d'exprimer de manière unitaire cet opérateur, tandis que l'utilisation de la transformée de Zak diagonalise l'opérateur au cas de la densité critique de Nyquist ($ab=1$). À cette densité critique, le célèbre théorème de Balian-Low impose d'ailleurs une restriction fondamentale : il est mathématiquement impossible d'engendrer une base orthonormée (ou de Riesz) de Gabor avec une fenêtre idéalement localisée simultanément en temps et en fréquence, ce qui légitime la nécessité d'introduire la redondance inhérente aux frames ($ab < 1$).</p>
+
+      <p>Pour des réseaux irréguliers, en revanche, les méthodes de dualité algébriques et la transformée de Zak s'effondrent, et les résultats dépendent alors fortement de la fenêtre spécifiée ainsi que des conditions géométriques de l'ensemble. Par exemple, Lyubarskii et Seip ont démontré que pour une fenêtre Gaussienne, le système irrégulier forme une frame si et seulement si sa densité de Beurling inférieure vérifie $D^-(\Delta) > 1$. Plus récemment, Baranov et Belov ont établi des résultats de caractérisation exacts pour la sécante hyperbolique asymétrique sur des réseaux semi-irréguliers.</p>
+    </div>
+
+    <div class="theme">
+      <h3>Mes thèmes de recherche</h3>
+      <p>Mes intérêts de recherche se situent à l'intersection de ces deux théories. Je m'intéresse particulièrement à la stabilité des frames de Gabor générées par des réseaux irréguliers, et à leur lien fondamental avec les mesures de sampling quantitatives dans les espaces de Paley-Wiener. En exploitant des méthodes d'analyse réelle (notamment des inégalités de type Wirtinger et des techniques de troncature spatiale), je développe des approches constructives permettant d'extraire des bornes de stabilité totalement explicites pour des configurations géométriques irrégulières.</p>
+    </div>
+</section>
 
     <div style="margin-top:2.5rem;">
       <h2>Publications &amp; prépublications</h2>
