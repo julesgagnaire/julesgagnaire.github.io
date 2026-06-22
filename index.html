@@ -601,40 +601,32 @@
     <div class="section-label">Recherche</div>
     <h2>Intérêts &amp; travaux</h2>
 
-    <section id="recherche">
-    <div class="section-label">Recherche</div>
-    <h2>Intérêts &amp; travaux</h2>
-
-    <section id="recherche">
-    <div class="section-label">Recherche</div>
-    <h2>Intérêts &amp; travaux</h2>
-
     <div class="theme">
       <h3>Espace de Paley-Wiener</h3>
-      <p>L'espace de Paley-Wiener $PW_\tau$ est l'espace des fonctions entières de type exponentiel au plus $\tau$ (ou $2\pi\tau$, selon la convention de la transformée de Fourier) dont la restriction à la droite réelle est de carré intégrable. Cet espace apparaît naturellement dans de nombreux cadres mathématiques et physiques, notamment via le théorème d'échantillonnage de Shannon-Nyquist, qui stipule que toute fonction de cet espace peut être parfaitement reconstruite à partir de ses évaluations sur un réseau régulier abstrait.</p>
+      <p>L'espace de Paley-Wiener \(PW_\tau\) est l'espace des fonctions entières de type exponentiel au plus \(\tau\) (ou \(2\pi\tau\), selon la convention de la transformée de Fourier) dont la restriction à la droite réelle est de carré intégrable. Cet espace apparaît naturellement dans de nombreux cadres mathématiques et physiques, notamment via le théorème d'échantillonnage de Shannon-Nyquist, qui stipule que toute fonction de cet espace peut être parfaitement reconstruite à partir de ses évaluations sur un réseau régulier abstrait.</p>
       
-      <p>Historiquement, l'étude de l'échantillonnage dans $PW_\tau$ s'est concentrée sur les ensembles discrets (sampling sets). Les travaux fondateurs de Beurling et Landau ont établi les conditions géométriques de densité nécessaires et suffisantes pour qu'un ensemble irrégulier $\Lambda \subset \mathbb{R}$ garantisse la stabilité de la reconstruction, traduite par l'équivalence de normes :
-      $$A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Lambda} |f(\lambda)|^2 \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.$$</p>
+      <p>Historiquement, l'étude de l'échantillonnage dans \(PW_\tau\) s'est concentrée sur les ensembles discrets (sampling sets). Les travaux de Beurling et Landau ont établi les conditions géométriques de densité nécessaires et suffisantes pour qu'un ensemble irrégulier \(\Lambda \subset \mathbb{R}\) garantisse la stabilité de la reconstruction, traduite par l'équivalence de normes :
+      \[A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Lambda} |f(\lambda)|^2 \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.\]</p>
 
-      <p>De manière plus générale, cette notion s'étend aux mesures de sampling. Une mesure positive $\mu$ est dite de sampling pour $PW_\tau$ s'il existe des constantes $A, B > 0$ telles que :
-      $$A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.$$</p>
+      <p>De manière plus générale, cette notion s'étend aux mesures de sampling. Une mesure positive \(\mu\) est dite de sampling pour \(PW_\tau\) s'il existe des constantes \(A, B > 0\) telles que :
+      \[A \|f\|_{L^2}^2 \le \int_{\mathbb{R}} |f(x)|^2 \mathrm{d}\mu(x) \le B \|f\|_{L^2}^2, \qquad \forall f \in PW_\tau.\]</p>
     </div>
 
     <div class="theme">
-      <h3>Frames de Gabor </h3>
+      <h3>Frames de Gabor</h3>
       <p>Un système de Gabor est une famille de fonctions de la forme :
-      $$\mathcal{G}(g, \Delta) = \{e^{2\pi i \lambda_2 x} g(x - \lambda_1)\}_{(\lambda_1, \lambda_2) \in \Delta}$$
-      où $g \in L^2(\mathbb{R})$ est appelée la fenêtre, qui en général est une fonction bien localisée (par exemple, une Gaussienne ou une sécante hyperbolique), et $\Delta \subset \mathbb{R}^2$ est un ensemble discret de points. On dit que ce système forme une frame de Gabor pour $L^2(\mathbb{R})$ s'il existe des constantes $A, B > 0$ telles que pour toute fonction $f \in L^2(\mathbb{R})$ :
-      $$A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Delta} |\langle f, \pi_\lambda g \rangle|^2 \le B \|f\|_{L^2}^2.$$</p>
+      \[\mathcal{G}(g, \Delta) = \{e^{2\pi i \lambda_2 x} g(x - \lambda_1)\}_{(\lambda_1, \lambda_2) \in \Delta}\]
+      où \(g \in L^2(\mathbb{R})\) est appelée la fenêtre, qui en général est une fonction bien localisée (par exemple, une Gaussienne), et \(\Delta \subset \mathbb{R}^2\) est un ensemble discret de points. On dit que ce système forme une frame de Gabor pour \(L^2(\mathbb{R})\) s'il existe des constantes \(A, B > 0\) telles que pour toute fonction \(f \in L^2(\mathbb{R})\) :
+      \[A \|f\|_{L^2}^2 \le \sum_{\lambda \in \Delta} |\langle f, \pi_\lambda g \rangle|^2 \le B \|f\|_{L^2}^2.\]</p>
       
-      <p>Les frames de Gabor sont rigoureusement documentées et s'appuient sur plusieurs piliers théoriques classiques. Pour des réseaux réguliers de la forme $\Delta = a\mathbb{Z} \times b\mathbb{Z}$, la propriété de frame est parfaitement caractérisée. Outre le critère historique d'Ingrid Daubechies (1990) établissant des conditions suffisantes via le contrôle des termes croisés, la structure fine de ces opérateurs repose sur le théorème de dualité de Wexler-Raz / Ron-Shen, qui relie l'opérateur de frame sur $\Delta$ à une propriété de séquence de Riesz sur le réseau adjoint $\Delta^\circ = \frac{1}{b}\mathbb{Z} \times \frac{1}{a}\mathbb{Z}$. De plus, le théorème de Janssen permet d'exprimer de manière unitaire cet opérateur, tandis que l'utilisation de la transformée de Zak diagonalise l'opérateur au cas de la densité critique de Nyquist ($ab=1$). À cette densité critique, le célèbre théorème de Balian-Low impose d'ailleurs une restriction fondamentale : il est mathématiquement impossible d'engendrer une base orthonormée (ou de Riesz) de Gabor avec une fenêtre idéalement localisée simultanément en temps et en fréquence, ce qui légitime la nécessité d'introduire la redondance inhérente aux frames ($ab < 1$).</p>
-
-      <p>Pour des réseaux irréguliers, en revanche, les méthodes de dualité algébriques et la transformée de Zak s'effondrent, et les résultats dépendent alors fortement de la fenêtre spécifiée ainsi que des conditions géométriques de l'ensemble. Par exemple, Lyubarskii et Seip ont démontré que pour une fenêtre Gaussienne, le système irrégulier forme une frame si et seulement si sa densité de Beurling inférieure vérifie $D^-(\Delta) > 1$. Plus récemment, Baranov et Belov ont établi des résultats de caractérisation exacts pour la sécante hyperbolique asymétrique sur des réseaux semi-irréguliers.</p>
+      <p>Les frames de Gabor sont rigoureusement documentées et s'appuient sur plusieurs piliers théoriques classiques. Pour des réseaux réguliers de la forme \(\Delta = a\mathbb{Z} \times b\mathbb{Z}\), la propriété de frame est bien étudiée grâce aux travaux de personnes tels que Daubechies, Janssen, Ron et Shen, ou encore Balian et Low.</p>
+      
+      <p>Pour des réseaux irréguliers, ces méthodes s'effondrent (transformée de Zak), et les résultats dépendent fortement de la fenêtre spécifiée ainsi que des conditions géométriques de l'ensemble. Par exemple, Lyubarskii et Seip ont démontré que pour une fenêtre Gaussienne, le système irrégulier forme une frame si et seulement si sa densité de Beurling inférieure vérifie \(D^-(\Delta) > 1\). Plus récemment, Baranov et Belov ont établi des résultats de caractérisation exacts pour la sécante hyperbolique asymétrique sur des réseaux semi-irréguliers.</p>
     </div>
 
     <div class="theme">
       <h3>Mes thèmes de recherche</h3>
-      <p>Mes intérêts de recherche se situent à l'intersection de ces deux théories. Je m'intéresse particulièrement à la stabilité des frames de Gabor générées par des réseaux irréguliers, et à leur lien fondamental avec les mesures de sampling quantitatives dans les espaces de Paley-Wiener. En exploitant des méthodes d'analyse réelle (notamment des inégalités de type Wirtinger et des techniques de troncature spatiale), je développe des approches constructives permettant d'extraire des bornes de stabilité totalement explicites pour des configurations géométriques irrégulières.</p>
+      <p>Mes intérêts de recherche portent Je sur la stabilité des frames de Gabor générées par des réseaux irréguliers, et les mesures de sampling dans les espaces de Paley-Wiener.</p>
     </div>
 </section>
 
