@@ -16,7 +16,8 @@
   <title>Jules Gagnaire — Doctorant en Mathématiques</title>
 
   <script>
-    if (localStorage.getItem('theme') === 'dark') {
+    // Mode sombre par défaut, sauf si le visiteur a choisi le mode clair
+    if (localStorage.getItem('theme') !== 'light') {
       document.documentElement.classList.add('dark-mode');
     }
   </script>
@@ -30,8 +31,8 @@
     :root {
       --black: #111;
       --gray-dark: #444;
-      --gray: #777;
-      --gray-light: #bbb;
+      --gray: #6b6b6b;
+      --gray-light: #8a8a8a;
       --border: #ddd;
       --bg: #fafaf8;
       --white: #fff;
@@ -42,17 +43,14 @@
       --black: #f0f0ee;
       --gray-dark: #ccc;
       --gray: #999;
-      --gray-light: #666;
-      --border: #333;
+      --gray-light: #8a8a8a;
+      --border: #3a3a3a;
       --bg: #121212;
       --white: #1e1e1e;
       --accent: #66a1ff;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    /* Ajout du décalage pour ne pas masquer les titres sous la barre fixe */
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
       background: var(--bg);
@@ -62,6 +60,10 @@
       font-size: 15px;
       line-height: 1.7;
       transition: background 0.3s, color 0.3s;
+      /* Le pied de page reste en bas même si une section est courte */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAVBAR ── */
@@ -113,7 +115,7 @@
       font-weight: 300;
     }
     nav ul a:hover { color: var(--black); background: var(--border); }
-    nav ul a.active { color: var(--black); font-weight: 500; }
+    nav ul a.active { color: var(--black); font-weight: 500; background: var(--border); }
 
     .burger-btn {
       display: none;
@@ -155,17 +157,26 @@
 
     /* ── MAIN ── */
     main {
+      flex: 1;
+      width: 100%;
       max-width: 780px;
       margin: 0 auto;
       padding: 5rem 2rem 4rem;
     }
 
-    /* ── SECTIONS ── */
+    /* ── SECTIONS (une seule visible à la fois) ── */
     section {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--border);
+      display: none;
+      padding: 3rem 0;
     }
-    section:last-child { border-bottom: none; }
+    section.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: none; }
+    }
 
     .section-label {
       font-family: 'IBM Plex Mono', monospace;
@@ -295,7 +306,7 @@
       padding: 0.5rem 0.8rem;
       font-weight: 500;
       color: var(--black);
-      list-style: none; /* Supprime la flèche par défaut */
+      list-style: none;
       user-select: none;
       transition: background 0.2s;
     }
@@ -388,7 +399,6 @@
       color: var(--accent);
     }
     
-    /* Adaptation mobile pour les articles */
     @media (max-width: 600px) {
       .pub-header, .pub-meta {
         flex-direction: column;
@@ -404,6 +414,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
     }
     .teach-table th {
       text-align: left;
@@ -513,7 +524,7 @@
       header { padding: 0 1.5rem; }
       .burger-btn { display: block; }
       .header-right {
-        display: none; /* Caché par défaut */
+        display: none;
         position: absolute;
         top: 56px;
         left: 0;
@@ -527,7 +538,7 @@
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
       }
       .header-right.open {
-        display: flex; /* Affiché quand la classe open est active */
+        display: flex;
       }
       nav { width: 100%; }
       nav ul { flex-direction: column; align-items: flex-start; gap: 0; }
@@ -538,11 +549,12 @@
         border-radius: 0;
         font-size: 0.9rem;
       }
+      nav ul a.active { background: none; }
       nav ul li:last-child a { border-bottom: none; }
       .controls { width: 100%; justify-content: flex-start; }
     }
     @media (max-width: 700px) {
-      main { padding: 6.5rem 1.2rem 3rem; }
+      main { padding: 5rem 1.2rem 3rem; }
       .entry, .talk { grid-template-columns: 90px 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
@@ -630,7 +642,6 @@
       <h3>Mes thèmes de recherche</h3>
       <p>Mes intérêts de recherche portent sur la stabilité des frames de Gabor générées par des réseaux irréguliers.</p>
     </div>
-</section>
 
     <div style="margin-top:2.5rem;">
       <h2>Publications &amp; prépublications</h2>
@@ -662,6 +673,7 @@
           </div>
         </details>
       </div>
+    </div>
   </section>
 
   <section id="enseignement">
@@ -685,8 +697,6 @@
             </a>
           </td>
         </tr>
-      </tbody>
-      <tbody>
         <tr>
           <td>Recueil d'exercices de 1ère et 2ème année</td>
           <td class="mono">CPGE, L1, L2</td>
@@ -719,8 +729,6 @@
             <a href="Fiche_Rappel_L1_OMA.pdf" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Fiche rappel.</a>
           </td>
         </tr>
-      </tbody>
-      <tbody>
         <tr>
           <td>TD - Mathématiques pour l'informatique</td>
           <td class="mono">L1</td>
@@ -732,52 +740,53 @@
   </section>
 
   <section id="exposes">
-<h2>Séminaires &amp; conférences</h2>
+    <div class="section-label">Exposés &amp; diffusion</div>
+    <h2>Séminaires &amp; conférences</h2>
 
-<div class="talk">
-  <div class="talk-date">2026</div>
-  <div>
-    <div class="talk-title">
-      Théorie des frames de Gabor : Résultats classiques et défis sur des réseaux quelconques
-      <span class="badge">Présentation</span>
-    </div>
-    <div class="talk-where">
-      MARGAUX PhD Days — Institut de Mathématiques de Bordeaux<br>
-      <a href="https://github.com/julesgagnaire/memoire/raw/main/Beamer___Théorie_des_frames_de_Gabor___Résultats_classiques_et_défis_sur_des_réseaux_quelconques__MARGAUx_PhD_Days_-1.pdf" target="_blank" class="dl-link">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
-      </a>
-    </div>
-    <details class="abstract-accordion">
-      <summary>Résumé de l'exposé</summary>
-      <div class="abstract-content">
-        La théorie des frames généralise la notion des bases de Riesz dans les espaces de Hilbert, offrant un cadre mathématique rigoureux pour la représentation redondante et stable des données. Parmi les constructions les plus étudiées figurent les frames de Gabor. Générées par l'action d'opérateurs de translation et de modulation sur une fonction fenêtre de . Le comportement de ces systèmes est aujourd'hui bien maîtrisé lorsque l'ensemble d'échantillonnage est structuré sur un réseau uniforme, mais ceci est bien moins compris lorsque cet ensemble est irrégulier.
+    <div class="talk">
+      <div class="talk-date">2026</div>
+      <div>
+        <div class="talk-title">
+          Théorie des frames de Gabor : Résultats classiques et défis sur des réseaux quelconques
+          <span class="badge">Présentation</span>
+        </div>
+        <div class="talk-where">
+          MARGAUX PhD Days — Institut de Mathématiques de Bordeaux<br>
+          <a href="https://github.com/julesgagnaire/memoire/raw/main/Beamer___Théorie_des_frames_de_Gabor___Résultats_classiques_et_défis_sur_des_réseaux_quelconques__MARGAUx_PhD_Days_-1.pdf" target="_blank" class="dl-link">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
+          </a>
+        </div>
+        <details class="abstract-accordion">
+          <summary>Résumé de l'exposé</summary>
+          <div class="abstract-content">
+            La théorie des frames généralise la notion des bases de Riesz dans les espaces de Hilbert, offrant un cadre mathématique rigoureux pour la représentation redondante et stable des données. Parmi les constructions les plus étudiées figurent les frames de Gabor. Générées par l'action d'opérateurs de translation et de modulation sur une fonction fenêtre de . Le comportement de ces systèmes est aujourd'hui bien maîtrisé lorsque l'ensemble d'échantillonnage est structuré sur un réseau uniforme, mais ceci est bien moins compris lorsque cet ensemble est irrégulier.
+          </div>
+        </details>
       </div>
-    </details>
-  </div>
-</div>
+    </div>
 
-<div class="talk">
-  <div class="talk-date">2026</div>
-  <div>
-    <div class="talk-title">
-      Sampling dans l'espace de Paley-Wiener : Bornes quantitatives explicites
-      <span class="badge">Présentation</span>
-    </div>
-    <div class="talk-where">
-      Journée de rentrée de l'équipe Analyse — Institut de Mathématiques de Bordeaux<br>
-      <a href="https://github.com/julesgagnaire/memoire/raw/main/Beamer___Sampling_dans_l_espace_de_Paley_Wiener.pdf" target="_blank" class="dl-link">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
-      </a>
-    </div>
-    <details class="abstract-accordion">
-      <summary>Résumé de l'exposé</summary>
-      <div class="abstract-content">
-        L'échantillonnage dans les espaces de Paley-Wiener est bien compris qualitativement. Le théorème de Beurling et Landau, pour les ensembles, et celui d'Ortega-Cerdà, pour les mesures, caractérisent exactement les configurations à partir desquelles une fonction à spectre borné se reconstruit de façon stable. Cependant ces théorèmes garantissent l'existence des constantes de sampling sans en donner la moindre valeur.
+    <div class="talk">
+      <div class="talk-date">2026</div>
+      <div>
+        <div class="talk-title">
+          Sampling dans l'espace de Paley-Wiener : Bornes quantitatives explicites
+          <span class="badge">Présentation</span>
+        </div>
+        <div class="talk-where">
+          Journée de rentrée de l'équipe Analyse — Institut de Mathématiques de Bordeaux<br>
+          <a href="https://github.com/julesgagnaire/memoire/raw/main/Beamer___Sampling_dans_l_espace_de_Paley_Wiener.pdf" target="_blank" class="dl-link">
+            <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Télécharger les slides (PDF)
+          </a>
+        </div>
+        <details class="abstract-accordion">
+          <summary>Résumé de l'exposé</summary>
+          <div class="abstract-content">
+            L'échantillonnage dans les espaces de Paley-Wiener est bien compris qualitativement. Le théorème de Beurling et Landau, pour les ensembles, et celui d'Ortega-Cerdà, pour les mesures, caractérisent exactement les configurations à partir desquelles une fonction à spectre borné se reconstruit de façon stable. Cependant ces théorèmes garantissent l'existence des constantes de sampling sans en donner la moindre valeur.
 Cet exposé propose des bornes explicites. La majoration s'obtient via un théorème de Donoho et Logan. Et sous une hypothèse simple de contrôle uniforme des trous, on obtient une minoration élémentaire, polynomiale en les paramètres, pour les ensembles comme pour les mesures.
+          </div>
+        </details>
       </div>
-    </details>
-  </div>
-</div>
+    </div>
 
     <h2 style="margin-top:3rem;">Engagement &amp; vulgarisation</h2>
     <div class="talk">
@@ -928,7 +937,6 @@ Cet exposé propose des bornes explicites. La majoration s'obtient via un théor
           Surfaces de Riemann, formes modulaires, théorème de Ramsey, fonctions harmoniques, théorèmes de point fixe.</div>
         </div>
       </div>
-      </div>
 
       <div class="entry">
         <div class="entry-date">2024 – 2025</div>
@@ -1032,7 +1040,6 @@ Cet exposé propose des bornes explicites. La majoration s'obtient via un théor
     headerRight.classList.toggle('open');
   });
 
-  // Fermer le menu lors d'un clic sur un lien
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', () => {
       headerRight.classList.remove('open');
@@ -1040,22 +1047,26 @@ Cet exposé propose des bornes explicites. La majoration s'obtient via un théor
   });
 
   // ==========================================
-  // Logique du scroll de la navbar
+  // Navigation par onglets : une section à la fois
   // ==========================================
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('main > section[id]');
   const links = document.querySelectorAll('nav a');
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('active'));
-        const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-30% 0px -65% 0px' });
+  function showSection(id) {
+    // Section par défaut si le hash est vide ou inconnu
+    if (!document.getElementById(id) || !document.getElementById(id).matches('main > section')) {
+      id = 'accueil';
+    }
+    sections.forEach(s => s.classList.toggle('visible', s.id === id));
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    window.scrollTo(0, 0);
+  }
 
-  sections.forEach(s => obs.observe(s));
+  // Changement de section au clic (le hash de l'URL change)
+  window.addEventListener('hashchange', () => showSection(location.hash.slice(1)));
+
+  // Affichage initial (permet aussi les liens directs, ex. .../#cv)
+  showSection(location.hash.slice(1));
 
   // ==========================================
   // Logique du Dark Mode
