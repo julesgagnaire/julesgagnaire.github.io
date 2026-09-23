@@ -409,6 +409,54 @@
       .pub-header .dl-link { margin-top: 0; }
     }
 
+    /* ── ANNONCES ── */
+    .annonces {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 2.5rem;
+    }
+    .annonces-titre {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+    .annonce {
+      padding: 0.7rem 0;
+      border-top: 1px dashed var(--border);
+    }
+    .annonces-titre + .annonce { border-top: none; padding-top: 0; }
+    .annonce:last-child { padding-bottom: 0; }
+    .annonce-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.25rem;
+    }
+    .annonce-cours {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.05rem 0.45rem;
+    }
+    .annonce-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gray-light);
+    }
+    .annonce-texte {
+      font-size: 0.9rem;
+      color: var(--black);
+    }
+
     /* ── TABLE ── */
     .teach-table {
       width: 100%;
@@ -678,6 +726,61 @@
 
   <section id="enseignement">
     <div class="section-label">Enseignement</div>
+
+    <div class="annonces" id="annonces">
+      <div class="annonces-titre">
+        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg>
+        Annonces
+      </div>
+
+      <div class="annonce">
+        <div class="annonce-meta">
+          <span class="annonce-cours">L1 - OMAA4 (groupe du mercredi matin)</span>
+          <span class="annonce-date">23/09/2026</span>
+        </div>
+        <div class="annonce-texte"> Test 30min mercredi 30 septembre (essentiellement sur géométrie du plan 1 et un peu sur les révisions).
+          <br>Exercices 21, 22, 25, 29, 30, 23 à préparer pour mercredi 30 septembre.</div>
+      </div>
+      <div class="annonce">
+        <div class="annonce-meta">
+          <span class="annonce-cours">L1 - OMAC1 (groupe du jeudi matin)</span>
+          <span class="annonce-date">23/09/2026</span>
+        </div>
+        <div class="annonce-texte">Test 30min jeudi 1er octobre (essentiellement sur géométrie du plan 1 et un peu sur les révisions).
+          <br>Exercices 19, 20, 24, 27, 34 à préparer pour jeudi 24 septembre.</div>
+      </div>
+
+    </div>
+    
+    <h2>Cours &amp; travaux dirigés</h2>
+    <table class="teach-table">
+      <thead>
+        <tr>
+          <th>Intitulé</th>
+          <th>Niveau</th>
+          <th>Année</th>
+          <th>Documents</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TD - Outils mathématiques</td>
+          <td class="mono">L1</td>
+          <td class="mono">2026 - 2027</td>
+          <td>
+            <a href="TD_L1_OMA.pdf" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> TD correction. </a>
+            <br>
+            <a href="Fiche_Rappel_L1_OMA.pdf" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Fiche rappel.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>TD - Mathématiques pour l'informatique</td>
+          <td class="mono">L1</td>
+          <td class="mono">2026 - 2027</td>
+          <td><a href="url" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> --.</a></td>
+        </tr>
+      </tbody>
+    </table>
     <h2>Ressources pédagogiques</h2>
     <table class="teach-table">
       <thead>
@@ -705,35 +808,6 @@
               <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> PDF.
             </a>
           </td>
-        </tr>
-      </tbody>
-    </table>
-    <h2>Cours &amp; travaux dirigés</h2>
-    <table class="teach-table">
-      <thead>
-        <tr>
-          <th>Intitulé</th>
-          <th>Niveau</th>
-          <th>Année</th>
-          <th>Documents</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>TD - Outils mathématiques</td>
-          <td class="mono">L1</td>
-          <td class="mono">2026 - 2027</td>
-          <td>
-            <a href="TD_L1_OMA.pdf" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> TD correction. </a>
-            <br>
-            <a href="Fiche_Rappel_L1_OMA.pdf" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Fiche rappel.</a>
-          </td>
-        </tr>
-        <tr>
-          <td>TD - Mathématiques pour l'informatique</td>
-          <td class="mono">L1</td>
-          <td class="mono">2026 - 2027</td>
-          <td><a href="url" class="dl-link" target="_blank"> <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> --.</a></td>
         </tr>
       </tbody>
     </table>
@@ -1067,6 +1141,12 @@ Cet exposé propose des bornes explicites. La majoration s'obtient via un théor
 
   // Affichage initial (permet aussi les liens directs, ex. .../#cv)
   showSection(location.hash.slice(1));
+
+  // Cache le cadre des annonces s'il n'en contient aucune
+  const annoncesBox = document.getElementById('annonces');
+  if (annoncesBox && !annoncesBox.querySelector('.annonce')) {
+    annoncesBox.style.display = 'none';
+  }
 
   // ==========================================
   // Logique du Dark Mode
